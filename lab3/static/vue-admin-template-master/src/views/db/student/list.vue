@@ -31,7 +31,7 @@
 
       <el-table-column prop="id" label="学号" width="220" />
 
-      <el-table-column prop="name" label="姓名" width="180" />
+      <el-table-column prop="name" label="姓名" width="220" />
 
       <el-table-column label="性别" width="120">
         <!-- scope代表整个表格，scope.row代表表格的当前行 -->
@@ -42,14 +42,15 @@
 
       <el-table-column prop="classId" label="班号" width="200"/>
 
-      <el-table-column prop="firstYear" label="入学年份" width="300"/>
+      <el-table-column prop="firstYear" label="入学年份" width="250"/>
 
-      <el-table-column label="操作" width="450" align="center">
+      <el-table-column label="操作" width="350" align="center">
         <template slot-scope="scope">
-          <router-link :to="'/edu/teacher/edit/'+scope.row.id">
+          <router-link :to="'/student/update/'+scope.row.id">
             <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
           </router-link>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
+
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteStudentById(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -100,6 +101,33 @@ export default {
         resetData() {
           this.queryCondition = {}
           this.getAllStudents()
+        },
+        //  删除学生
+        deleteStudentById(id) {
+          this.$confirm('此操作将永久删除该学生信息, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            student.deleteStudentById(id)
+              .then(response => {
+                //  删除
+                this.getAllStudents()
+                //  提示信息
+                this.$message({
+                  type: 'success',
+                  message: '删除成功!'
+                })
+                this.getAllStudents()
+              })
+          }).catch((response) => { // 失败
+            if (!(response === 'cancel')) {
+              this.$message({
+                type: 'error',
+                message: '删除失败'
+              })
+            }
+          })
         }
     }
 

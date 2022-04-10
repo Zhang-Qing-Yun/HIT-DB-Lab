@@ -4,6 +4,7 @@ import com.qingyun.db.bean.Department;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public interface DepartmentMapper extends BaseMapper<Department> {
             "            (#{d.dname})" +
             "        </foreach >" +
             "</script>")
-    void insertDepartments(List<Department> list);
+    void insertDepartments(@Param("list") List<Department> list);
 
     @Insert("insert into department(`dname`) values (#{department.dname})")
-    void insertDepartment(Department department);
+    void insertDepartment(@Param("department") Department department);
 }

@@ -23,4 +23,24 @@ public interface StudentService extends IService<Student> {
      * 学生的总数
      */
     int getTotalRows(Student queryCondition);
+
+    /**
+     * 添加一个学生
+     */
+    void insertStudent(Student student);
+
+    /**
+     * 根据学生id删除该学生
+     */
+    void deleteStudentById(Integer id);
+
+    /**
+     * 根据学生id查询学生信息
+     */
+    Student getStudentById(Integer id);
+
+    /**
+     * 根据id修改学生信息
+     */
+    void updateStudentById(Integer id, Student student);
 }

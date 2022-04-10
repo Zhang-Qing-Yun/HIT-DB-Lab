@@ -31,6 +31,7 @@ public interface StudentMapper extends BaseMapper<Student> {
             "<when test='firstYear != null'>" +
             "and first_year = #{firstYear} " +
             "</when>" +
+            "order by id desc " +
             "limit #{offset}, #{limit}" +
             "</script>")
     List<Student> getAllStudents(int offset, int limit, Integer id, String name, Integer classId, Integer firstYear);
@@ -64,9 +65,16 @@ public interface StudentMapper extends BaseMapper<Student> {
     void insertStudents(@Param("list") List<Student> list);
 
     @Insert("insert into student(`name`,sex,class_id,first_year) " +
-            "values (#{stu.name}, #{stu.sex}, #{stu.classId}, #{stu.firstYear})")
-    void insertStudent(Student stu);
+            "values (#{student.name}, #{student.sex}, #{student.classId}, #{student.firstYear})")
+    void insertStudent(@Param("student") Student student);
 
     @Delete("delete from student where id=#{id}")
     void deleteStudentById(Integer id);
+
+    @Select("select * from student where id=#{id}")
+    Student getStudentById(Integer id);
+
+    @Update("update student set `name`=#{student.name},sex=#{student.sex},class_id=#{student.classId}," +
+            "first_year=#{student.firstYear} where id=#{id}")
+    void updateStudentById(@Param("id") Integer id, @Param("student") Student student);
 }

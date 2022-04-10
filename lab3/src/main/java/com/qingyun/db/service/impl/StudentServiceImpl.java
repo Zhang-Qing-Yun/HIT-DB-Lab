@@ -34,4 +34,26 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         return studentMapper.getTotalRows(queryCondition.getId(), queryCondition.getName(),
                 queryCondition.getClassId(), queryCondition.getFirstYear());
     }
+
+    @Override
+    public void insertStudent(Student student) {
+        //  TODO：检查班级是否存在
+        studentMapper.insertStudent(student);
+    }
+
+    @Override
+    public void deleteStudentById(Integer id) {
+        studentMapper.deleteStudentById(id);
+    }
+
+    @Override
+    public Student getStudentById(Integer id) {
+        return studentMapper.getStudentById(id);
+    }
+
+    @Override
+    public void updateStudentById(Integer id, Student student) {
+        //  TODO：检查班级是否存在
+        studentMapper.updateStudentById(id, student);
+    }
 }

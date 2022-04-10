@@ -4,6 +4,7 @@ import com.qingyun.db.bean.Teacher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,8 +27,8 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
             "            (#{t.name}, #{t.departmentId})" +
             "        </foreach >" +
             "</script>")
-    void insertTeachers(List<Teacher> list);
+    void insertTeachers(@Param("list") List<Teacher> list);
 
     @Insert("insert into teacher(`name`,department_id) values (#{teacher.name}, #{teacher.departmentId})")
-    void insertTeacher(Teacher teacher);
+    void insertTeacher(@Param("teacher") Teacher teacher);
 }

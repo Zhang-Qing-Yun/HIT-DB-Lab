@@ -4,6 +4,7 @@ import com.qingyun.db.bean.Class;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public interface ClassMapper extends BaseMapper<Class> {
             "            (#{c.tid},#{c.departmentId})" +
             "        </foreach >" +
             "</script>")
-    void insertClasses(List<Class> list);
+    void insertClasses(@Param("list") List<Class> list);
 
     @Insert("insert into class(tid,department_id) values (#{c.tid},#{c.departmentId})")
-    void insertClass(Class c);
+    void insertClass(@Param("c") Class c);
 }

@@ -30,7 +30,7 @@ public class StudentController {
     private int limit;
 
     /**
-     * 分页查询所有的学生
+     * 分页查询所有的学生，可以添加查询条件
      */
     @PostMapping("/getAllStudents/{current}")
     public R getAllStudents(@PathVariable int current, @RequestBody(required = false) Student queryCondition) {
@@ -44,6 +44,30 @@ public class StudentController {
         return R.ok()
                 .data("page", page)
                 .data("items", items);
+    }
+
+    @PostMapping("/insertStudent")
+    public R insertStudent(@RequestBody Student student) {
+        studentService.insertStudent(student);
+        return R.ok();
+    }
+
+    @DeleteMapping("/deleteStudentById/{id}")
+    public R deleteStudentById(@PathVariable Integer id) {
+        studentService.deleteStudentById(id);
+        return R.ok();
+    }
+
+    @GetMapping("/getStudentById/{id}")
+    public R getStudentById(@PathVariable Integer id) {
+        Student student = studentService.getStudentById(id);
+        return R.ok().data("student", student);
+    }
+
+    @PostMapping("updateStudentById/{id}")
+    public R updateStudentById(@PathVariable Integer id, @RequestBody Student student) {
+        studentService.updateStudentById(id, student);
+        return R.ok();
     }
 }
 

@@ -4,6 +4,7 @@ import com.qingyun.db.bean.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public interface CourseMapper extends BaseMapper<Course> {
             "            (#{c.cname},#{c.tid})" +
             "        </foreach >" +
             "</script>")
-    void insertCourses(List<Course> list);
+    void insertCourses(@Param("list") List<Course> list);
 
     @Insert("insert into course(cname,tid) values (#{course.cname},#{course.tid})")
-    void insertCourse(Course course);
+    void insertCourse(@Param("course") Course course);
 }
