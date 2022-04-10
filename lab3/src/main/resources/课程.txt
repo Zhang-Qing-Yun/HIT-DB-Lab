@@ -1,0 +1,60 @@
+大学英语　　　　College English
+　　物理实验　　　　Experiment of College Physics
+　　高等数学　　　　Advanced Mathematics
+　　体育　　　　　　Physical Education
+　　军事理论　　　　Military Theory
+　　大学物理　　　　College Physics
+　　线性代数　　　　Linear Algebra
+　　机械制图　　　　Mechanical Graphing
+　　算法语言　　　　Algorithmic Language
+　　法律基础　　　　Fundamentals of Law
+　　普通物理　　　　General Physics
+电子线路　　　　　　　Circuitry
+　　脉冲与数字电路　　　　Pulse   Numerical Circuitry
+　　金工实习　　　　Metalworking Practice
+　　电工实习　　　　Electrical Engineering Practice
+　　电子线路实验　　Experiment in Electronic Circuitry
+　　普通物理实验　　　　　Lab of General Physics
+　　复变函数与积分变换　　Functions of Complex Variables   Integral Transformations
+　　电路理论　　　　　　　Theory of Circuitry
+　　电路测试技术　　　　　Circuit Measurement Technology
+　　概率论与随机过程　　　Probability Theory   Stochastic Process
+信号与线性系统　　　　Signal   Linear System
+  	　　微机原理　　　　Principle of Microcomputer
+  	　　电磁场与电磁波　Electromagnetic Fields   Magnetic Waves
+  	　　电机电器与供电　Motor Elements and Power Supply
+  	　　计算方法　　　　Computational Method
+  	　　软件技术基础　　Basis of Software Technique
+  	　　c语言　　　　　C language
+  	   软件架构
+  	　　工业企业管理　　Industrial Enterprise Management
+  	　　移动通讯　　　　Moving Communication
+  	　　情报检索　　　　Information Searches
+  	　　毕业设计　　　　Graduation Thesis
+  	　　自动控制系统　　Automatic Control System
+  	　　微波技术 Microwave Technique
+  	　　通讯原理　　　　Principle of Communication
+  	　　数字信号处理　　Digital Signal Processing
+  	　　微机实验　　　　Experiment of Microcomputer
+  	　　计算机接口技术　Computer Interface Technology
+  	　　半导体变流技术　Semiconductor converting Technique
+  	　　运筹学　　　　　Operational Research
+  	　　自动检测技术　　Auto-Measurement Technique
+  	　　马克思主义原理　Principle of Marxism
+  	　　机械原理　　　　Principle of Mechanic
+  	　　机械设计　　　　Mechanic Design
+  	　　最优控制　　　　Optimum Control
+  	　　微机控制技术　　Microcomputer Control Technology
+过程控制　　　　Procedure Control
+  	　　光纤通讯系统　　Fiber Optical Communication System
+  	　　可靠性技术导论　Introduction to Reliability Technology
+  	　　卫星通信　　　　Satellite Communications
+  	　　电视原理　　　　Television Operation
+  	　　数字图象处理　　Digital Image Processing
+  	　　专业英语　　　　Specialty English
+  	　　传感器原理　　　Principle of Sensing Device
+  	　　单片机原理　　　Principle of Single-Chip computer
+  	　　自动控制理论　　Automatic Control Theory
+  	　　模拟电子电路　　Analogical Electronics
+  	　　数字电子电路　　Digital Electronics
+  	　　资本主义经济　　Economy of Capitalism

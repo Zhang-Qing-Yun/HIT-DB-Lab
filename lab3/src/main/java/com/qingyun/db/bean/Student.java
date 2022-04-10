@@ -34,7 +34,7 @@ public class Student implements Serializable {
     private String name;
 
     /**
-     * 性别
+     * 性别，0是女，1是男
      */
     private Boolean sex;
 
