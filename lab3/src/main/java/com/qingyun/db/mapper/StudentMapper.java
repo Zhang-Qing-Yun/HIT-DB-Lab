@@ -16,29 +16,42 @@ import java.util.List;
  */
 @Mapper
 public interface StudentMapper extends BaseMapper<Student> {
-//    @Select("<script>" +
-//            "select * from student " +
-//            "where true " +
-//            "<if test='#{id} != null'>" +
-//            "and id = #{id} " +
-//            "</if>" +
-//            "<if test='#{name} != null'>" +
-//            "and name = #{name} " +
-//            "</if>" +
-//            "<if test='#{classId} != null'>" +
-//            "and class_id = #{classId} " +
-//            "</if>" +
-//            "<if test='#{firstYear} != null'>" +
-//            "and first_year = #{firstYear} " +
-//            "</if>" +
-//            "limit #{offset}, #{limit}" +
-//            "</script>")
-    @Select("select * from student where true and id = #{id} and name = #{name} " +
-            "and class_id = #{classId} and first_year = #{firstYear} limit #{offset}, #{limit}")
+    @Select("<script>" +
+            "select * from student " +
+            "where true " +
+            "<when test='id != null'>" +
+            "and id = #{id} " +
+            "</when>" +
+            "<when test='name != null'>" +
+            "and `name` = #{name} " +
+            "</when>" +
+            "<when test='classId != null'>" +
+            "and class_id = #{classId} " +
+            "</when>" +
+            "<when test='firstYear != null'>" +
+            "and first_year = #{firstYear} " +
+            "</when>" +
+            "limit #{offset}, #{limit}" +
+            "</script>")
     List<Student> getAllStudents(int offset, int limit, Integer id, String name, Integer classId, Integer firstYear);
 
-    @Select("select count(*) from student")
-    int getTotalRows();
+    @Select("<script>" +
+            "select count(*) from student " +
+            "where true " +
+            "<when test='id != null'>" +
+            "and id = #{id} " +
+            "</when>" +
+            "<when test='name != null'>" +
+            "and `name` = #{name} " +
+            "</when>" +
+            "<when test='classId != null'>" +
+            "and class_id = #{classId} " +
+            "</when>" +
+            "<when test='firstYear != null'>" +
+            "and first_year = #{firstYear} " +
+            "</when>" +
+            "</script>")
+    int getTotalRows(Integer id, String name, Integer classId, Integer firstYear);
 
     @Insert("<script>" +
             "INSERT INTO student" +

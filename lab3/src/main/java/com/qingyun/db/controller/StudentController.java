@@ -36,7 +36,7 @@ public class StudentController {
     public R getAllStudents(@PathVariable int current, @RequestBody(required = false) Student queryCondition) {
         //  封装分页对象
         Page page = new Page();
-        page.setRows(studentService.getTotalRows());
+        page.setRows(studentService.getTotalRows(queryCondition));
         page.setCurrent(current);
         page.setLimit(limit);
         page.setPath("/student/getAllStudents/");

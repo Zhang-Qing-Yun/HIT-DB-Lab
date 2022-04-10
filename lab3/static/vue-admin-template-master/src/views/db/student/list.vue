@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-        <!--查询表单-->
+    <!--查询表单-->
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item>
         <el-input v-model="queryCondition.id" placeholder="学号/ID"/>
@@ -34,8 +34,9 @@
       <el-table-column prop="name" label="姓名" width="180" />
 
       <el-table-column label="性别" width="120">
-        <template slot-scope="scope">  # scope代表整个表格
-          {{ scope.row.sex===true?'男':'女' }}  # scope.row代表表格的当前行
+        <!-- scope代表整个表格，scope.row代表表格的当前行 -->
+        <template slot-scope="scope">
+          {{ scope.row.sex===true?'男':'女' }}
         </template>
       </el-table-column>
 

@@ -30,7 +30,8 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
     }
 
     @Override
-    public int getTotalRows() {
-        return studentMapper.getTotalRows();
+    public int getTotalRows(Student queryCondition) {
+        return studentMapper.getTotalRows(queryCondition.getId(), queryCondition.getName(),
+                queryCondition.getClassId(), queryCondition.getFirstYear());
     }
 }

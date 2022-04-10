@@ -22,5 +22,5 @@ public interface StudentService extends IService<Student> {
     /**
      * 学生的总数
      */
-    int getTotalRows();
+    int getTotalRows(Student queryCondition);
 }
