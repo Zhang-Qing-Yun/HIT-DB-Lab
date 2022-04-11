@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -30,4 +31,39 @@ public interface ClassMapper extends BaseMapper<Class> {
 
     @Insert("insert into class(tid,department_id) values (#{c.tid},#{c.departmentId})")
     void insertClass(@Param("c") Class c);
+
+    @Select("<script>" +
+            "select * from class " +
+            "where true " +
+            "<when test='queryCondition.id != null'>" +
+            "and id = #{queryCondition.id} " +
+            "</when>" +
+            "<when test='queryCondition.tid != null'>" +
+            "and `tid` = #{queryCondition.tid} " +
+            "</when>" +
+            "<when test='queryCondition.departmentId != null'>" +
+            "and department_id = #{queryCondition.departmentId} " +
+            "</when>" +
+            "order by id desc " +
+            "limit #{offset}, #{limit}" +
+            "</script>")
+    List<Class> getAllClasses(int offset, int limit, @Param("queryCondition") Class queryCondition);
+
+    @Select("<script>" +
+            "select count(*) from class " +
+            "where true " +
+            "<when test='queryCondition.id != null'>" +
+            "and id = #{queryCondition.id} " +
+            "</when>" +
+            "<when test='queryCondition.tid != null'>" +
+            "and `tid` = #{queryCondition.tid} " +
+            "</when>" +
+            "<when test='queryCondition.departmentId != null'>" +
+            "and department_id = #{queryCondition.departmentId} " +
+            "</when>" +
+            "</script>")
+    int getTotalRows(@Param("queryCondition") Class queryCondition);
+
+    @Select("select * from class where id=#{id}")
+    Class getClassById(Integer id);
 }

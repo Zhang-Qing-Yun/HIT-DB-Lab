@@ -1,5 +1,6 @@
 package com.qingyun.db.service;
 
+import com.qingyun.db.base.ParameterNotRightException;
 import com.qingyun.db.bean.Student;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -27,7 +28,7 @@ public interface StudentService extends IService<Student> {
     /**
      * 添加一个学生
      */
-    void insertStudent(Student student);
+    void insertStudent(Student student) throws ParameterNotRightException;
 
     /**
      * 根据学生id删除该学生
@@ -42,5 +43,5 @@ public interface StudentService extends IService<Student> {
     /**
      * 根据id修改学生信息
      */
-    void updateStudentById(Integer id, Student student);
+    void updateStudentById(Integer id, Student student) throws ParameterNotRightException;
 }

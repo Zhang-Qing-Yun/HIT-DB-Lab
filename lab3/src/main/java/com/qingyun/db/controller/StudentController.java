@@ -1,6 +1,7 @@
 package com.qingyun.db.controller;
 
 
+import com.qingyun.db.base.ParameterNotRightException;
 import com.qingyun.db.base.R;
 import com.qingyun.db.bean.Page;
 import com.qingyun.db.bean.Student;
@@ -48,8 +49,12 @@ public class StudentController {
 
     @PostMapping("/insertStudent")
     public R insertStudent(@RequestBody Student student) {
-        studentService.insertStudent(student);
-        return R.ok();
+        try {
+            studentService.insertStudent(student);
+            return R.ok();
+        } catch (ParameterNotRightException e) {
+            return R.error().message(e.getMessage());
+        }
     }
 
     @DeleteMapping("/deleteStudentById/{id}")
@@ -66,8 +71,12 @@ public class StudentController {
 
     @PostMapping("updateStudentById/{id}")
     public R updateStudentById(@PathVariable Integer id, @RequestBody Student student) {
-        studentService.updateStudentById(id, student);
-        return R.ok();
+        try {
+            studentService.updateStudentById(id, student);
+            return R.ok();
+        } catch (ParameterNotRightException e) {
+            return R.error().message(e.getMessage());
+        }
     }
 }
 

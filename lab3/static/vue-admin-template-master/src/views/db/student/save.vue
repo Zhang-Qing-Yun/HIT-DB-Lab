@@ -75,8 +75,11 @@ export default {
                     })
                     //  修改路由跳转到列表页面
                     this.$router.push({ path: '/student/allStudents' })
-                }).catch(erroe => {
-                    
+                }).catch(error => {
+                    this.$message({
+                        type: 'error',
+                        message: '出错了'
+                    })
                 })
         },
         //  修改学生信息
@@ -86,7 +89,7 @@ export default {
                     //  提示信息
                     this.$message({
                         type: 'success',
-                        message: '修改成功!'
+                        message: '添加成功!'
                     })
                     //  修改路由跳转到列表页面
                     this.$router.push({ path: '/student/allStudents' })

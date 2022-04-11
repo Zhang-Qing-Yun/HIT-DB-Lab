@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -30,4 +31,33 @@ public interface DepartmentMapper extends BaseMapper<Department> {
 
     @Insert("insert into department(`dname`) values (#{department.dname})")
     void insertDepartment(@Param("department") Department department);
+
+    @Select("<script>" +
+            "select * from department " +
+            "where true " +
+            "<when test='queryCondition.id != null'>" +
+            "and id = #{queryCondition.id} " +
+            "</when>" +
+            "<when test='queryCondition.dname != null'>" +
+            "and `dname` = #{queryCondition.dname} " +
+            "</when>" +
+            "order by id desc " +
+            "limit #{offset}, #{limit}" +
+            "</script>")
+    List<Department> getAllDepartments(int offset, int limit, @Param("queryCondition") Department queryCondition);
+
+    @Select("<script>" +
+            "select count(*) from department " +
+            "where true " +
+            "<when test='queryCondition.id != null'>" +
+            "and id = #{queryCondition.id} " +
+            "</when>" +
+            "<when test='queryCondition.dname != null'>" +
+            "and `dname` = #{queryCondition.dname} " +
+            "</when>" +
+            "</script>")
+    int getTotalRows(@Param("queryCondition") Department queryCondition);
+
+    @Select("select * from department where id=#{id}")
+    Department getDepartmentById(Integer id);
 }

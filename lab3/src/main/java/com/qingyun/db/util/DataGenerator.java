@@ -81,7 +81,7 @@ public final class DataGenerator {
      */
     public static List<Class> generateClasses() {
         List<Class> classes = new ArrayList<>();
-        for(int i = 0; i < MAX_FIRST_YEAR-MIN_FIRST_YEAR; i++) {
+        for(int i = 0; i <= MAX_FIRST_YEAR-MIN_FIRST_YEAR; i++) {
             for(int j = 0; j < YEAR_CLASS; j++) {
                 Class cls = new Class();
                 cls.setTid(new Random().nextInt(TEA_NUM)+1);
