@@ -35,8 +35,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Override
     public void insertCourse(Course course) throws ParameterNotRightException {
         //  校验是否存在该教师
-        if (course.getTid() == null || teacherService.getTeacherById(course.getId()) == null) {
-            throw new ParameterNotRightException("班主任信息不正确");
+        if (course.getTid() == null || teacherService.getTeacherById(course.getTid()) == null) {
+            throw new ParameterNotRightException("授课教师信息不正确");
         }
         courseMapper.insertCourse(course);
     }

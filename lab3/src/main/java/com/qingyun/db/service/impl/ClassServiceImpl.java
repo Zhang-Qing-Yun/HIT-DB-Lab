@@ -49,7 +49,7 @@ public class ClassServiceImpl extends ServiceImpl<ClassMapper, Class> implements
     @Override
     public void insertClass(Class c) throws ParameterNotRightException {
         //  校验是否存在该教师
-        if (c.getTid() == null || teacherService.getTeacherById(c.getId()) == null) {
+        if (c.getTid() == null || teacherService.getTeacherById(c.getTid()) == null) {
             throw new ParameterNotRightException("班主任信息不正确");
         }
         //  校验院系信息是否正确

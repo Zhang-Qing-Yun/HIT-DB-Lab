@@ -19,7 +19,7 @@ export default {
         })
     },
 
-    //   删除一个学生
+    //   新增一个学生
     insertStudent(student) {
         return request({
             url: '/student/insertStudent/',

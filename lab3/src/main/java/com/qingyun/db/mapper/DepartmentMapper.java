@@ -41,7 +41,6 @@ public interface DepartmentMapper extends BaseMapper<Department> {
             "<when test='queryCondition.dname != null'>" +
             "and `dname` = #{queryCondition.dname} " +
             "</when>" +
-            "order by id desc " +
             "limit #{offset}, #{limit}" +
             "</script>")
     List<Department> getAllDepartments(int offset, int limit, @Param("queryCondition") Department queryCondition);

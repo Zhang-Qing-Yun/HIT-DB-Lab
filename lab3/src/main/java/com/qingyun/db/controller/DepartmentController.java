@@ -7,11 +7,7 @@ import com.qingyun.db.bean.Page;
 import com.qingyun.db.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/department")
+@CrossOrigin
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
@@ -33,7 +30,7 @@ public class DepartmentController {
     private int limit;
 
     @PostMapping("/getAllDepartments/{current}")
-    public R getAllDepartments(@PathVariable int current, Department queryCondition) {
+    public R getAllDepartments(@PathVariable int current, @RequestBody(required = false) Department queryCondition) {
         Page page = new Page();
         page.setRows(departmentService.getTotalRows(queryCondition));
         page.setCurrent(current);
@@ -41,7 +38,7 @@ public class DepartmentController {
         page.setPath("/department/getAllDepartments/");
 
         List<Department> items = departmentService.getAllDepartments(page.getOffset(), limit, queryCondition);
-        return R.ok().data("items", items);
+        return R.ok().data("items", items).data("page", page);
     }
 }
 

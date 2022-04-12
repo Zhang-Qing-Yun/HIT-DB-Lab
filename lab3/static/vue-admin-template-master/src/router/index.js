@@ -64,6 +64,88 @@ export const constantRouterMap = [
         hidden: true
       }
     ]
+  },
+
+  {
+    path: '/teacher',
+    component: Layout,
+    redirect: '/teacher/getAllTeachers',
+    name: '教师管理',
+    meta: { title: '教师管理', icon: 'example' },
+    children: [
+      {
+        path: 'getAllTeachers',
+        name: '教师列表',
+        component: () => import('@/views/db/teacher/list'),
+        meta: { title: '教师列表', icon: 'tree' }
+      },
+      {
+        path: 'insertTeacher',
+        name: '添加老师',
+        component: () => import('@/views/db/teacher/save'),
+        meta: { title: '添加老师', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/department',
+    component: Layout,
+    redirect: '/department/getAllDepartments',
+    name: '院系管理',
+    meta: { title: '院系管理', icon: 'example' },
+    children: [
+      {
+        path: 'getAllDepartments',
+        name: '院系列表',
+        component: () => import('@/views/db/department/list'),
+        meta: { title: '院系列表', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
+    path: '/class',
+    component: Layout,
+    redirect: '/class/getAllClasses',
+    name: '班级管理',
+    meta: { title: '班级管理', icon: 'example' },
+    children: [
+      {
+        path: 'getAllClasses',
+        name: '班级列表',
+        component: () => import('@/views/db/class/list'),
+        meta: { title: '班级列表', icon: 'tree' }
+      },
+      {
+        path: 'insertClass',
+        name: '添加班级',
+        component: () => import('@/views/db/class/save'),
+        meta: { title: '添加班级', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/course',
+    component: Layout,
+    redirect: '/course/getAllCourses',
+    name: '课程管理',
+    meta: { title: '课程管理', icon: 'example' },
+    children: [
+      {
+        path: 'getAllCourses',
+        name: '课程列表',
+        component: () => import('@/views/db/course/list'),
+        meta: { title: '课程列表', icon: 'tree' }
+      },
+      {
+        path: 'insertCourse',
+        name: '添加课程',
+        component: () => import('@/views/db/course/save'),
+        meta: { title: '添加课程', icon: 'table' }
+      }
+    ]
   }
 ]
 

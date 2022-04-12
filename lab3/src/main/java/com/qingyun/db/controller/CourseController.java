@@ -22,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/course")
+@CrossOrigin
 public class CourseController {
     @Autowired
     private CourseService courseService;
@@ -30,7 +31,7 @@ public class CourseController {
     private int limit;
 
     @PostMapping("/getAllCourses/{current}")
-    public R getAllCourses(@PathVariable Integer current, @RequestBody Course queryCondition) {
+    public R getAllCourses(@PathVariable Integer current, @RequestBody(required = false) Course queryCondition) {
         Page page = new Page();
         page.setRows(courseService.getTotalRows(queryCondition));
         page.setCurrent(current);
