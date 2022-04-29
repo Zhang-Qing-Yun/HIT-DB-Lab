@@ -301,7 +301,66 @@ bool NestedLoopJoinOperator::execute(int numAvailableBufPages,
   numUsedBufPages = 0;
   numIOs = 0;
 
-  // TODO: Execute the join algorithm
+  vector<string> resTupleList;
+  // 寻找两个表的公共部分
+  vector<Attribute> common_attrs = getCommonAttributes(leftTableSchema, rightTableSchema);
+  badgerdb::FileIterator iter = leftTableFile.begin();
+  while (iter != leftTableFile.end()) {
+    // 每次读入缓存池M-1个块
+    vector<badgerdb::Page*> list;
+    for (int i = 0; i < numAvailableBufPages-1; i++) {
+      badgerdb::Page page = *iter;
+      badgerdb::Page* buffered_page;
+      bufMgr->readPage(&leftTableFile, page.page_number(), buffered_page);
+      numIOs++;
+      numUsedBufPages++;
+      list.push_back(buffered_page);
+      iter++;
+      if (iter == leftTableFile.end()) {
+        break;
+      }
+    }
+    
+    // 每次读入并处理右表中的一个块
+    for (badgerdb::FileIterator iter = rightTableFile.begin(); iter != rightTableFile.end(); iter++) {
+      badgerdb::Page page = *iter;
+      badgerdb::Page* buffered_page;
+      bufMgr->readPage(&rightTableFile, page.page_number(), buffered_page);
+      numIOs++;
+      numUsedBufPages++;
+      for (badgerdb::PageIterator page_iter = buffered_page->begin();
+          page_iter != buffered_page->end(); ++page_iter) {
+        string rightKey = *page_iter;
+        string search_key_right = construct_search_key(rightKey, common_attrs, rightTableSchema);
+        // 查找能与该元组进行连接的元组
+        for(int i = 0; i < list.size(); i++) {
+          badgerdb::Page* buffered_page_left = list.at(i);
+          for(badgerdb::PageIterator page_iter_left = buffered_page_left->begin(); 
+              page_iter_left != buffered_page_left->end(); page_iter_left++) {
+            string leftKey = *page_iter_left;
+            string search_key_left = construct_search_key(leftKey, common_attrs, leftTableSchema);
+            // 判断是否相等
+            if(search_key_left == search_key_right) {
+              string result_tuple = joinTuples(leftKey, rightKey, leftTableSchema, rightTableSchema);
+              resTupleList.push_back(result_tuple);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // 将结果写入文件
+  for(int i = 0; i < resTupleList.size(); i++) {
+    HeapFileManager::insertTuple(resTupleList.at(i), resultFile, bufMgr);
+  }
+  
+  numResultTuples = resTupleList.size();
+  if (numUsedBufPages <= numAvailableBufPages) {
+    numUsedBufPages = numUsedBufPages;
+  } else {
+    numUsedBufPages = numAvailableBufPages;
+  }
 
   isComplete = true;
   return true;

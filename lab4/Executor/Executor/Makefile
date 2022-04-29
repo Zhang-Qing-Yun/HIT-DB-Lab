@@ -17,7 +17,8 @@ all:
 
 clean:
 	cd src;\
-	rm -f badgerdb_main test.?
+	rm -f badgerdb_main test.?\
+	rm -f *.tbl
 
 doc:
 	doxygen Doxyfile
